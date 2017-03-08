@@ -1,74 +1,93 @@
 package com.wzj.live.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wzj.live.R;
-import com.wzj.live.adapter.base.MyAdapter;
+import com.wzj.live.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
  * Created by MR_Wang on 2017/3/8.
  */
 
-public class HomeFragment extends Fragment {
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
+public class HomeFragment extends BaseFragment {
+     @BindView(R.id.tabs)
+     TabLayout mTabLayout;
 
-    private LayoutInflater mInflater;
-    private List<String> mTitleList = new ArrayList<>();//页卡标题集合
-    private View view1, view2;//页卡视图
-    private List<View> mViewList = new ArrayList<>();//页卡视图集合
+     @BindView(R.id.vp_view)
+     ViewPager mViewPager;
+
+    private List<Fragment> mFragmentList = new ArrayList<>();//页卡视图集合
+    private FragmentPagerAdapter mAdapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, null);
-        initView(savedInstanceState, view);
-
+        ButterKnife.bind(getActivity());
         return view;
     }
 
 
-    protected void initView(Bundle savedInstanceState, View view) {
-        super.onCreate(savedInstanceState);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.vp_view);
-        mTabLayout = (TabLayout) view.findViewById(R.id.tabs);
 
-        mInflater = LayoutInflater.from(getContext());
-        view1 = mInflater.inflate(R.layout.home_choiceness_fragment, null);
-        view2 = mInflater.inflate(R.layout.home_hot_fragment, null);
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Home_choiceness_Fragment view1 = Home_choiceness_Fragment.newInstance();
+        Home_hot_Fragment        view2 = Home_hot_Fragment.newInstance();
+
 
         //添加页卡视图
-        mViewList.add(view1);
-        mViewList.add(view2);
+        mFragmentList.add(view1);
+        mFragmentList.add(view2);
 
 
         //添加页卡标题
-        mTitleList.add("精选");
-        mTitleList.add("热门");
+       // mTitleList.add("精选");
+       // mTitleList.add("热门");
 
 
-        mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
-        mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
-        mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
 
 
-        MyAdapter mAdapter = new MyAdapter(mViewList, mTitleList);
+
+        mAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
+
+            @Override
+            public int getCount() {
+                return mFragmentList.size();
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                return mFragmentList.get(position);
+            }
+        };
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
-        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
+    //    mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
+     //   mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
+        mTabLayout.addTab(mTabLayout.newTab().setText("精选"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("发现"));
+        //mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
+
 
     }
-
-
 }
