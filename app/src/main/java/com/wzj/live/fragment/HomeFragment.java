@@ -32,19 +32,21 @@ public class HomeFragment extends BaseFragment {
      ViewPager mViewPager;
 
     private List<Fragment> mFragmentList = new ArrayList<>();//页卡视图集合
+    private List<String>   title = new ArrayList<>();//Tab集合
     private FragmentPagerAdapter mAdapter;
+
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        return fragment;
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, null);
-        ButterKnife.bind(getActivity());
+        ButterKnife.bind(this,view);
         return view;
     }
-
-
-
-
 
 
     @Override
@@ -55,18 +57,12 @@ public class HomeFragment extends BaseFragment {
         Home_hot_Fragment        view2 = Home_hot_Fragment.newInstance();
 
 
+        title.add("精选");
+        title.add("发现");
+
         //添加页卡视图
         mFragmentList.add(view1);
         mFragmentList.add(view2);
-
-
-        //添加页卡标题
-       // mTitleList.add("精选");
-       // mTitleList.add("热门");
-
-
-
-
 
         mAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
 
@@ -79,15 +75,19 @@ public class HomeFragment extends BaseFragment {
             public Fragment getItem(int position) {
                 return mFragmentList.get(position);
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+
+                return title.get(position);
+            }
         };
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
+        initTabLine();
+
+    }
+
+    private void initTabLine() {
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
-    //    mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
-     //   mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
-        mTabLayout.addTab(mTabLayout.newTab().setText("精选"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("发现"));
-        //mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
-
-
     }
 }

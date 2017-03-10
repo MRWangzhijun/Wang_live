@@ -8,12 +8,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import com.wzj.live.R;
 import com.wzj.live.activity.base.BaseActivity;
 import com.wzj.live.fragment.HomeFragment;
 import com.wzj.live.fragment.MyFragment;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -24,7 +22,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     RadioGroup mRadioGroup;
     @BindView(R.id.menu_img)
     ImageView img;
-
 
     private FragmentManager fm;
 
@@ -91,9 +88,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 changFragment(new MyFragment(),true);
                 break;
         }
-
-
-
     }
 
 
