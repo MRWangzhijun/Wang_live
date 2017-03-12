@@ -1,4 +1,4 @@
-package com.wzj.live.entity.base;
+package com.wzj.live.entity;
 
 import java.io.Serializable;
 import java.util.List;

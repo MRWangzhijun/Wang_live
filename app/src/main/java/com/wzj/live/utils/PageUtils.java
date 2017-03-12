@@ -47,6 +47,7 @@ public class PageUtils {
 
     private OkHttpHelper okHttpHelper;
 
+
     private PageUtils(){
         okHttpHelper = OkHttpHelper.getInstance();
     }
@@ -102,11 +103,12 @@ public class PageUtils {
     private void requestData() {
         String url=BuildUrl();
         Log.d("TAG", "请求路径："+url);
-        //okHttpHelper.get(url,new RequestCallBack(this.context));
-        okHttpHelper.post(url,buildUrlParams(),new RequestCallBack(this.context));
+        //okHttpHelper.post(url,buildPostMap(),new RequestCallBack(this.context));
     }
+
+
     private String BuildUrl(){
-        return this.url+"?"+buildUrlParams();
+        return this.url.toString();
     }
 
 //    private String buildUrlParams(){
@@ -126,23 +128,34 @@ public class PageUtils {
 //    }
 
 
-
+    /**
+     * get请求添加参数
+     * @return
+     */
     private Map buildUrlParams(){
         HashMap<String,Object> map=this.params;
         map.put("page",this.pageIndex);
         map.put("type",this.type);
-//        StringBuffer sb=new StringBuffer();
-//        for (Map.Entry<String,Object> entry:map.entrySet()){
-//            sb.append(entry.getKey()+"="+entry.getValue());
-//            sb.append("&");
-//        }
-//        String s=sb.toString();
-//        if(s.endsWith("&")) {
-//            s=s.substring(0,s.length()-1);
-//        }
+        StringBuffer sb=new StringBuffer();
+        for (Map.Entry<String,Object> entry:map.entrySet()){
+            sb.append(entry.getKey()+"="+entry.getValue());
+            sb.append("&");
+        }
+        String s=sb.toString();
+        if(s.endsWith("&")) {
+            s=s.substring(0,s.length()-1);
+        }
         return map;
     }
 
+
+    /**
+     * 显示数据
+     * @param datas
+     * @param totalPage
+     * @param totalCount
+     * @param <T>
+     */
     private<T> void showData(List<T> datas,int totalPage,int totalCount) {
         switch (state){
             case STATE_NORMAL:
@@ -165,6 +178,10 @@ public class PageUtils {
 
         }
     }
+
+
+
+
 
     public void request(){
         requestData();

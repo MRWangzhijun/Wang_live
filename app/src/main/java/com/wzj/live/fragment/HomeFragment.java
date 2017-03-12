@@ -1,11 +1,11 @@
 package com.wzj.live.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +37,7 @@ public class HomeFragment extends BaseFragment {
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
+        Log.e("TAG", "111111111111111111111");
         return fragment;
     }
 
@@ -45,17 +46,24 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, null);
         ButterKnife.bind(this,view);
+        onCreated(view,savedInstanceState);
         return view;
     }
 
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden) {
+            Log.e("TAG", "隐藏了吧");
+        }else {
+            Log.e("TAG", "显示了吧");
+        }
+    }
 
+    public void onCreated(View view, Bundle savedInstanceState) {
         Home_choiceness_Fragment view1 = Home_choiceness_Fragment.newInstance();
         Home_hot_Fragment        view2 = Home_hot_Fragment.newInstance();
-
 
         title.add("精选");
         title.add("发现");
@@ -83,11 +91,6 @@ public class HomeFragment extends BaseFragment {
             }
         };
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
-        initTabLine();
-
-    }
-
-    private void initTabLine() {
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
     }
 }

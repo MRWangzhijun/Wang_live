@@ -35,13 +35,13 @@
         />
 
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/home_choiceness_item_img"
-        android:layout_below="@id/home_choiceness_item_head"/>
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@id/home_choiceness_item_head"
+        />
 
     <TextView
         android:layout_width="wrap_content"

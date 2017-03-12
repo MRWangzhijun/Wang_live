@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import com.wzj.live.R;
 import com.wzj.live.activity.base.BaseActivity;
 import com.wzj.live.fragment.HomeFragment;
 import com.wzj.live.fragment.MyFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,7 +33,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
-        changFragment(new HomeFragment(), false);
+        changFragment(new HomeFragment(), true);
     }
 
 
@@ -42,7 +44,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "dsfsdfsdfsdfsdf", Toast.LENGTH_SHORT).show();
-                showBottonLayout();
             }
         });
         //已在布局中设置
@@ -75,8 +76,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         ft.commit();
     }
 
-
-
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
@@ -88,13 +87,5 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 changFragment(new MyFragment(),true);
                 break;
         }
-    }
-
-
-
-    private void showBottonLayout() {
-
-
-
     }
 }
