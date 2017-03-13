@@ -41,4 +41,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'com.facebook.fresco:fresco:1.1.0'
     compile 'com.zhy:okhttputils:2.6.2'
+    compile 'tyrant:heartlayout:1.0.1'
 }

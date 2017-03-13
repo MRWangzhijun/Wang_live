@@ -1,5 +1,6 @@
 package com.wzj.live.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,9 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.google.gson.Gson;
 import com.wzj.live.R;
+import com.wzj.live.activity.Live_Activity;
 import com.wzj.live.adapter.Home_HotAdapter;
+import com.wzj.live.adapter.base.BaseAdapter;
 import com.wzj.live.adapter.base.DividerItemDecoration;
 import com.wzj.live.entity.Liveing;
 import com.wzj.live.fragment.base.BaseFragment;
@@ -48,7 +51,7 @@ public class Home_hot_Fragment extends BaseFragment {
     private Home_HotAdapter mChAdapter;
     private List<Liveing.ResultBean.ListBean> list;
 
-    private int page=1;
+    private int page=0;
     private int type=1;
     private int totalPag=3;
 
@@ -128,11 +131,21 @@ public class Home_hot_Fragment extends BaseFragment {
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
                         DividerItemDecoration.HORIZONTAL_LIST));
+                mChAdapter.setmOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int psition) {
+                        Liveing.ResultBean.ListBean wares=mChAdapter.getItem(psition);
+                        Intent intent=new Intent(getActivity(), Live_Activity.class);
+                        intent.putExtra("viewPager",1);
+                        startActivity(intent);
+                    }
+                });
+
                 break;
             case STATE_REFRESH://刷新数据时需要清空数据源并填充新的数据源，并刷新
                     mChAdapter.clearData();
                     mChAdapter.addData(list);
-                    mRecyclerView.scrollToPosition(0);
+                   // mRecyclerView.scrollToPosition(0);
                     mRefreshLayout.finishRefresh();
 
                 break;
@@ -154,6 +167,7 @@ public class Home_hot_Fragment extends BaseFragment {
             public void onRefresh(final MaterialRefreshLayout materialRefreshLayout) {
                 //下拉刷新...
                 refreshData();
+
             }
 
             @Override
@@ -167,6 +181,7 @@ public class Home_hot_Fragment extends BaseFragment {
                 }
             }
         });
+
 
         // 结束下拉刷新...
         mRefreshLayout.finishRefresh();
@@ -198,6 +213,7 @@ public class Home_hot_Fragment extends BaseFragment {
     private void refreshData(){
         page=1;
         state=STATE_REFRESH;
+        requestDataByPost();
     }
 
 
@@ -210,7 +226,6 @@ public class Home_hot_Fragment extends BaseFragment {
         requestDataByPost();
     }
 
-    //**********************华丽的分割线******************************
 
 
 }

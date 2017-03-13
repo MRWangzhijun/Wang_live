@@ -46,7 +46,7 @@ public class Home_choiceness_Fragment extends BaseFragment {
     private static final int STATE_MORE=2;//加载更多
     private static  int state=STATE_NORMAL;//默认状态是正常状态
 
-    private int page=1;
+    private int page=0;
     private int totalPag=3;
     private int pageSize=3;
     private int type=0;
@@ -137,7 +137,7 @@ public class Home_choiceness_Fragment extends BaseFragment {
     private void showData() {
         switch (state) {
             case  STATE_NORMAL://首次显示创建适配器并 填充数据，设置到RecyclerView
-                mChAdapter = new Home_ChioncenessAdapter( list);
+                mChAdapter = new Home_ChioncenessAdapter(getContext(),list);
                 mRecyclerView.setAdapter(mChAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -189,6 +189,11 @@ public class Home_choiceness_Fragment extends BaseFragment {
                 mRefreshLayout.finishRefreshLoadMore();
 
     }
+
+
+
+
+
 
 
     @Override
