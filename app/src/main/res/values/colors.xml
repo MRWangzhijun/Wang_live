@@ -8,4 +8,9 @@
     <color name="red">#EE4000</color>
     <color name="black">#000000</color>
     <color name="lightslategray">#F0F0F0</color>
+
+
+    <color name="regard_container_bkg">#303030</color>
+
+    <color name="regard_image_bkg">#292929</color>
 </resources>

@@ -3,7 +3,8 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/two_fragment_rl">
 
 
 
@@ -62,23 +63,16 @@
 
 
 
-        <ImageView
-            android:id="@+id/live_tow_gift"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/game_icon_resume"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            />
+
 
         <ImageView
             android:id="@+id/live_two_love"
             android:layout_width="30dip"
             android:layout_height="30dip"
             android:src="@mipmap/ss_heart1"
-            android:layout_toLeftOf="@id/live_tow_gift"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"/>
 
     </RelativeLayout>
 
@@ -98,5 +92,17 @@
         android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-      />
+      >
+        <ImageView
+            android:id="@+id/live_tow_gift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/game_icon_resume"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </tyrantgit.widget.HeartLayout>
+
 </RelativeLayout>

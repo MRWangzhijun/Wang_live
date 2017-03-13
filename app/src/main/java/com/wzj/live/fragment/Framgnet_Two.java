@@ -1,17 +1,23 @@
 package com.wzj.live.fragment;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wzj.live.R;
@@ -19,6 +25,7 @@ import com.wzj.live.adapter.Home_Live_Two_Im_Adapter;
 import com.wzj.live.adapter.Home_Live_Two_User_Adapter;
 import com.wzj.live.adapter.base.DividerItemDecoration;
 import com.wzj.live.entity.TempBean;
+import com.wzj.live.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +40,7 @@ import tyrantgit.widget.HeartLayout;
  * Created by MR_Wang on 2017/3/12.
  */
 
-public class Framgnet_Two extends Fragment {
+public class Framgnet_Two extends Fragment implements View.OnClickListener {
 
     /**
      * 临时数据
@@ -55,8 +62,6 @@ public class Framgnet_Two extends Fragment {
     @BindView(R.id.live_two_head)
     SimpleDraweeView live_two_head;
 
-
-
     @BindView(R.id.live_tow_rl)
     RecyclerView live_tow_rl;
 
@@ -67,10 +72,25 @@ public class Framgnet_Two extends Fragment {
     @BindView(R.id.two_fragment_hear)
     HeartLayout two_fragment_hear;
 
+    @BindView(R.id.two_fragment_rl)
+    RelativeLayout relativeLayout;
+
 
     private Handler handler=new Handler();
     private Home_Live_Two_User_Adapter mTwo_user_adapter;
     private Home_Live_Two_Im_Adapter   mTwo_im_adapter;
+    // 图片封装为一个数组
+    private List icon=new ArrayList() ;
+    private PopupWindow pop;
+    private View popupView;
+    private static final int NUM=9;
+
+    ViewPager vp;
+
+    private List<GridView> mFragments = new ArrayList<>();
+    private View pPview;
+    private int count;
+    private List<List> sublist;
 
     @Nullable
     @Override
@@ -78,12 +98,27 @@ public class Framgnet_Two extends Fragment {
         View  view=inflater.inflate(R.layout.two_fragment,container,false);
         ButterKnife.bind(this,view);
         initData();
-
+        initListener();
         getLove();
         return view;
     }
 
 
+
+    private void initListener(){
+
+        live_tow_gift.setOnClickListener(this);
+        live_tow_im_rl.setOnClickListener(this);
+
+        popupView = getActivity().getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
+
+        pop = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        pop.setOutsideTouchable(true);
+        pop.setFocusable(true);// 点击back退出pop
+        pop.setAnimationStyle(R.style.add_new_style);
+        pop.setBackgroundDrawable(new ColorDrawable(0x33ff0000));// 设置背景透明，点击back退出pop
+    }
 
     private void initData(){
         live_two_head.setImageURI(hard_url);
@@ -108,6 +143,10 @@ public class Framgnet_Two extends Fragment {
                 DividerItemDecoration.HORIZONTAL_LIST));
         live_tow_im_rl.setAdapter(mTwo_im_adapter);
 
+
+        pPview = LayoutInflater.from(getActivity()).inflate(R.layout.layout_popupwindow, null, false);
+
+        vp= (ViewPager) pPview.findViewById(R.id.pop_wn);
 
     }
 
@@ -166,4 +205,80 @@ public class Framgnet_Two extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.live_tow_gift :
+                ToastUtils.show(getActivity(),"进来了");
+                showBottomDialog(v);
+                break;
+            case R.id.live_tow_im_rl:
+                showBottomDialog(v);
+                break;
+        }
+    }
+
+    /**
+     * 显示底部Dialog
+     *
+     * @param view 视图
+     */
+    public void showBottomDialog(View view) {
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        BottomDialogFragment editNameDialog = new BottomDialogFragment();
+        editNameDialog.show(fm, "fragment_bottom_dialog");
+    }
+
+
+
+//    private void getPoPWinData(){
+//        for (int i=0;i<30;i++){
+//            icon.add(R.mipmap.xiaoying001);
+//        }
+//        List templist=null;
+//        count = icon.size() / NUM + (icon.size() % NUM == 0 ? 0 : 1);
+//
+//
+//        Log.e("TAG", "几页"+ count);
+//        sublist = new ArrayList();
+//
+//        int a=0;
+//        for (int i = 0; i <= count; i++) {
+//
+//            if(i==0) {
+//                templist=icon.subList(a,i+NUM-1);
+//                sublist.add(templist);
+//            }else {
+//                templist=icon.subList(a,a+NUM);
+//                sublist.add(templist);
+//            }
+//            a=i+NUM;
+//        }
+//    }
+//
+//
+//    private void initPopWinData() {
+//        getPoPWinData();
+//        ImageView img;
+//        int [] image={R.mipmap.xiaoying003,R.mipmap.xiaoying006,R.mipmap.xiaoying007};
+//        List alist = new ArrayList<>();
+//        for(int i = 0; i < image.length; i++) {
+//            img=new ImageView(getActivity());
+//            img.setImageResource(image[i]);
+//            alist.add(img);
+//        }
+//
+//        Log.e("TAG", "集合==="+sublist.toString());
+//
+//        for (int i = 0; i < count; i++) {
+//            GridView gv = new GridView(getActivity());
+//            mFragments.add(gv);
+//        }
+//        //PP_VP_Adapter scalePagerAdapter = new PP_VP_Adapter(getActivity(),alist);
+//        ViewPage_adapter adapter=new ViewPage_adapter(alist);
+//        vp.setAdapter(adapter);
+//    }
+
 }
+
+
