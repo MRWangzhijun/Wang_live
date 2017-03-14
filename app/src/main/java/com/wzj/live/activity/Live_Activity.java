@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.wzj.live.R;
 import com.wzj.live.activity.base.BaseActivity;
+import com.wzj.live.fragment.Fragment_Three;
 import com.wzj.live.fragment.Framgnet_One;
 import com.wzj.live.fragment.Framgnet_Two;
 
@@ -47,9 +48,11 @@ public class Live_Activity extends BaseActivity{
         Framgnet_One view1 = new Framgnet_One();
         Framgnet_Two view2 =new Framgnet_Two();
 
+        Fragment_Three view3=new Fragment_Three();
         //添加页卡视图
         mFragmentList.add(view1);
-        mFragmentList.add(view2);
+       // mFragmentList.add(view2);
+        mFragmentList.add(view3);
 
         mAdapter = new FragmentPagerAdapter(this.getSupportFragmentManager()) {
 

@@ -45,7 +45,6 @@ public class PP_VP_Adapter extends PagerAdapter{
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
 
-
         Log.e("TAG", "1111111111111111111111");
         GridView gridView = list.get(position);
         gridView.setNumColumns(3);
@@ -54,7 +53,8 @@ public class PP_VP_Adapter extends PagerAdapter{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // showGift(String tag);
+               // context.showGift(position+"");
+                Log.e("TAG", "postion");
             }
 
         });
