@@ -1,6 +1,7 @@
 package com.wzj.live.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,12 +16,15 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.google.gson.Gson;
 import com.wzj.live.R;
-import com.wzj.live.activity.Live_Activity;
 import com.wzj.live.adapter.Home_HotAdapter;
 import com.wzj.live.adapter.base.BaseAdapter;
 import com.wzj.live.adapter.base.DividerItemDecoration;
 import com.wzj.live.entity.Liveing;
 import com.wzj.live.fragment.base.BaseFragment;
+import com.wzj.live.fun_sdk.NetDbAdapter;
+import com.wzj.live.fun_sdk.Settings;
+import com.wzj.live.fun_sdk.TextureVideoActivity;
+import com.wzj.live.fun_sdk.TextureVodActivity;
 import com.wzj.live.utils.Contants;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -54,6 +58,9 @@ public class Home_hot_Fragment extends BaseFragment {
     private int page=0;
     private int type=1;
     private int totalPag=3;
+
+    private NetDbAdapter NetDb;
+    private SharedPreferences settings;
 
 
 
@@ -134,10 +141,26 @@ public class Home_hot_Fragment extends BaseFragment {
                 mChAdapter.setmOnItemClickListener(new BaseAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int psition) {
-                        Liveing.ResultBean.ListBean wares=mChAdapter.getItem(psition);
-                        Intent intent=new Intent(getActivity(), Live_Activity.class);
-                        intent.putExtra("viewPager",1);
-                        startActivity(intent);
+                        String path ="rtmp://live.hkstv.hk.lxdns.com/live/hks";
+                        NetDb = new NetDbAdapter(getActivity());
+                        NetDb.open();
+
+                        if (NetDb.getData(path)) {
+                            NetDb.updateData(path);
+                        } else {
+                            NetDb.createDate(path);
+                        }
+                        NetDb.close();
+                        String playerType = "live";
+                        if (playerType.equals(Settings.VOD)) {
+                            Intent intent = new Intent(getActivity(), TextureVodActivity.class);
+                            intent.putExtra("path", path);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(getActivity(), TextureVideoActivity.class);
+                            intent.putExtra("path", path);
+                            startActivity(intent);
+                        }
                     }
                 });
 
