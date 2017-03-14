@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+   sourceSets{
+       main{
+            jniLibs.srcDirs = ['libs']
+       }
+   }
 }
 
 dependencies {
@@ -42,4 +48,11 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.1.0'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'tyrant:heartlayout:1.0.1'
+    compile fileTree(include: '*/so', dir: 'libs/armeabi-v7a')
+    compile fileTree(include: '*/so', dir: 'libs/arm64-v8a')
+    compile files('src/main/libs/zxing.jar')
+    compile files('src/main/libs/bugly_crash_release.jar')
+    compile project(':playerlib')
+    compile files('src/main/libs/libksyplayer.jar')
+    compile files('src/main/libs/libksystat.jar')
 }

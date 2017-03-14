@@ -71,4 +71,23 @@ public class Live_Activity extends BaseActivity{
     }
 
 
+
+
+
+//    String playerType = settings.getString("choose_type", Settings.LIVE);
+//    if (playerType.equals(Settings.VOD)) {
+//        Intent intent = new Intent(NetMediaActivty.this, TextureVodActivity.class);
+//        intent.putExtra("path", path);
+//        startActivity(intent);
+//    } else {
+//        Intent intent = new Intent(NetMediaActivty.this, TextureVideoActivity.class);
+//        intent.putExtra("path", path);
+//        startActivity(intent);
+//
+//    }
+
+
+
+
+
 }
