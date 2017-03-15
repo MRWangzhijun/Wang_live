@@ -7,4 +7,22 @@
     <dimen name="regards_type_image_size">48dp</dimen>
     <dimen name="regards_text_size">12sp</dimen>
 
+
+
+    <!--圆角大小-->
+    <dimen name="buttonCornerSize">5.0dip</dimen>
+
+    <dimen name="normalButtonHeight">38.0dip</dimen>
+    <dimen name="smallButtonHeight">32.0dip</dimen>
+    <dimen name="largePadding">16.0dip</dimen>
+    <dimen name="bigButtonTextSize">18.0sp</dimen>
+
+
+    <dimen name="ware_grid_img_width">100dp</dimen>
+    <dimen name="ware_grid_img_height">100dp</dimen>
+    <dimen name="category_layout_width">90dp</dimen>
+    <dimen name="basicPaddingSize">4.0dip</dimen>
+
+
+
 </resources>

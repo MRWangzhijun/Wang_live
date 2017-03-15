@@ -134,4 +134,8 @@
     <color name="viewfinder_laser">#ffff0000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="header">#58567D</color>
+
+
+    <color name="white_color_disable">#7fffffff</color>
+    <color name="colorWrite">#ffffff</color>
 </resources>

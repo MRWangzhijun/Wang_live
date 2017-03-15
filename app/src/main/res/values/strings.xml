@@ -31,4 +31,6 @@
     <string name="bftime_text">BufferTime:</string>
     <string name="bfsize_text">BufferSize:</string>
     <string name="text_setting">设置</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
 </resources>

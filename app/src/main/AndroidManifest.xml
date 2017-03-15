@@ -23,13 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".activity.Live_Activity">
 
@@ -54,6 +52,13 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+
+        <activity android:name=".activity.Register_Activity">
+
+        </activity>
+        <activity android:name=".activity.Login_Activity">
+
         </activity>
     </application>
 

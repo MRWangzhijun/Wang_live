@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wzj.live.R;
-import com.wzj.live.adapter.PP_VP_Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +170,7 @@ public class BottomDialogFragment extends DialogFragment {
             GridView gv = new GridView(getContext());
             mFragments.add(gv);
         }
-        PP_VP_Adapter scalePagerAdapter = new PP_VP_Adapter(getContext(),mFragments,sublist);
+        Fragment_Three.PP_VP_Adapter scalePagerAdapter = new Fragment_Three().new PP_VP_Adapter(getContext(),mFragments,sublist);
         vp.setAdapter(scalePagerAdapter);
     }
 

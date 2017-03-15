@@ -12,7 +12,9 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,9 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -29,6 +33,7 @@ import android.widget.TextView;
 import com.wzj.live.R;
 import com.wzj.live.activity.MagicTextView;
 import com.wzj.live.activity.MessageAdapter;
+import com.wzj.live.adapter.GvAdapter;
 import com.wzj.live.other.AudienceAdapter;
 import com.wzj.live.other.CustomRoundView;
 import com.wzj.live.other.HorizontalListView;
@@ -176,10 +181,10 @@ public class Fragment_Three extends Fragment implements View.OnClickListener {
             case R.id.sendInput:/*发送*/
                 sendText();
                 break;
-            case R.id.tvSendone:
+            case R.id.tvSendone://发送爱心
                 getLove();
                 break;
-            case R.id.three_fragment_hear:/*礼物1*/
+            case R.id.three_fragment_hear:///发送爱心
                 getLove();
                 break;
             case R.id.tvSendtwo:/*礼物2*/
@@ -559,6 +564,62 @@ public class Fragment_Three extends Fragment implements View.OnClickListener {
             }
         };
         timer.schedule(task,500,500);
+
+
+
+
+    }
+
+
+    class PP_VP_Adapter extends PagerAdapter {
+        private Context context;
+        private List<GridView> list;
+        private List<List> sublist;
+
+
+        public PP_VP_Adapter(Context context, List<GridView> list,List<List> sublist) {
+            this.context = context;
+            this.list = list;
+            this.sublist=sublist;
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+
+            container.removeView(list.get(position));
+        }
+
+        @Override
+        public Object instantiateItem(final ViewGroup container, int position) {
+
+            Log.e("TAG", "1111111111111111111111");
+            GridView gridView = list.get(position);
+            gridView.setNumColumns(3);
+            gridView.setAdapter(new GvAdapter(context,sublist.get(position)));
+
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    showGift(position+"");
+                    Log.e("TAG", "postion");
+                }
+
+            });
+
+            container.addView(list.get(position));
+            return list.get(position);
+        }
 
 
 

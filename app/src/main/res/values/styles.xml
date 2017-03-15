@@ -60,4 +60,28 @@
             <enum name="round" value="2" />
         </attr>
     </declare-styleable>
+
+
+
+
+
+    <!--大按钮的样式-->
+    <style name="bigButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">@dimen/normalButtonHeight</item>
+        <item name="android:paddingLeft">@dimen/largePadding</item>
+        <item name="android:paddingRight">@dimen/largePadding</item>
+        <item name="android:textSize">@dimen/bigButtonTextSize</item>
+        <item name="android:textColor">@color/white_color_selector</item>
+    </style>
+
+    <!--红色大按钮样式    继承大按钮样式，只需要改颜色就可用-->
+    <style name="bigRedButton" parent="bigButton">
+        <item name="android:background">@color/orange</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+
+    </style>
 </resources>

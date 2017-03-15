@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/orange">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.wzj.live.other.CustomRoundView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/xiaoying001"
+        android:layout_gravity="center_horizontal"
+        app:border_color="@color/colorPrimary"
+        app:border_width="1dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/register_heard"/>
+
+    <!-- 表格布局 -->
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dip" >
+        <!-- 表格布局：第一行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_top_corner_no_bottom_line"
+            android:padding="10dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dip"
+                android:text="手机号:" >
+            </TextView>
+            <EditText
+                android:id="@+id/login_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:maxLength="11"
+                android:inputType="number"
+                android:background="@null"
+                android:singleLine="true" >
+            </EditText>
+        </TableRow>
+
+
+
+
+        <!-- 表格布局：第二行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bottom_corner_no_top_line"
+            android:padding="10dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dip"
+                android:text="密码:" >
+            </TextView>
+            <EditText
+                android:id="@+id/login_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:singleLine="true" >
+            </EditText>
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        style="@style/bigRedButton"
+        android:layout_marginTop="20dp"
+        android:text="@string/login"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/login_btn"/>
+    />
+    <Button
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        style="@style/bigRedButton"
+        android:layout_marginTop="20dp"
+        android:text="@string/register"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/res_btn"/>
+    />
+
+</LinearLayout>

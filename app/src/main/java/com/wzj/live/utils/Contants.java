@@ -12,23 +12,11 @@ public class Contants {
     public final    static  String BASE="http://121.42.26.175:14444/";
 
     public final    static  String BASE_LIVE=BASE+"live/find.json";
+    public final    static  String BASE_REGISTER=BASE+"live/register.json";
+    public final    static  String BASE_LOGIN=BASE+"live/login.json";
+
 }
 
 
-
-/**
- *
- *
- *
- *
- *
- * http://192.168.155.101/RealTimePlay/FavoritePlayInfoServlet?curPage=2&pageSize=5
- *
- *
- *
- *
- *
- *
- * */
 
 

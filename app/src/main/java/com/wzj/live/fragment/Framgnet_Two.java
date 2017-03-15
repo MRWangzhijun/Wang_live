@@ -29,6 +29,7 @@ import com.wzj.live.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -151,15 +152,22 @@ public class Framgnet_Two extends Fragment implements View.OnClickListener {
     }
 
 
+    /**
+     * 获取随机颜色
+     * @return
+     */
+    private int randomColor() {
+        return Color.rgb(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255));
+    }
+
+
     private void getLove(){
         two_fragment_hear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                two_fragment_hear.addHeart(Color.GRAY);
-                two_fragment_hear.addHeart(Color.BLUE);
-                two_fragment_hear.addHeart(Color.CYAN);
-                two_fragment_hear.addHeart(Color.RED);
-                two_fragment_hear.addHeart(Color.GRAY);
+                two_fragment_hear.addHeart(randomColor());
+
+
             }
         });
 
@@ -173,23 +181,13 @@ public class Framgnet_Two extends Fragment implements View.OnClickListener {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        two_fragment_hear.addHeart(Color.GRAY);
-                        two_fragment_hear.addHeart(Color.BLUE);
-                        two_fragment_hear.addHeart(Color.CYAN);
-                        two_fragment_hear.addHeart(Color.RED);
-                        two_fragment_hear.addHeart(Color.GRAY);
+                        two_fragment_hear.addHeart(randomColor());
                     }
                 });
             }
         };
         timer.schedule(task,500,500);
-
-
-
-
     }
-
-
     private List<TempBean> getHeadData() {
 
         List<TempBean>  list=new ArrayList<>();
@@ -228,7 +226,6 @@ public class Framgnet_Two extends Fragment implements View.OnClickListener {
         BottomDialogFragment editNameDialog = new BottomDialogFragment();
         editNameDialog.show(fm, "fragment_bottom_dialog");
     }
-
 
 
 //    private void getPoPWinData(){

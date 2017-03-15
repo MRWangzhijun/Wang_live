@@ -81,7 +81,6 @@ public class NetMediaActivty extends AppCompatActivity implements View.OnClickLi
                     Intent intent = new Intent(NetMediaActivty.this, TextureVideoActivity.class);
                     intent.putExtra("path", path);
                     startActivity(intent);
-
                 }
             }
         });
