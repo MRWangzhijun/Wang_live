@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidAndH5/AndroidAndH5.iml" filepath="$PROJECT_DIR$/AndroidAndH5/AndroidAndH5.iml" />
       <module fileurl="file://$PROJECT_DIR$/Wang_live.iml" filepath="$PROJECT_DIR$/Wang_live.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
